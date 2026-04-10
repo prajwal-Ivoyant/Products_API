@@ -18,8 +18,8 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "http://localhost:5173",  // your frontend
-    "https://your-frontend.vercel.app" // future
+    "http://localhost:5173", 
+    "https://products-api-opal.vercel.app/"
   ],
   credentials: true
 }));
