@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { ProductsTypes } from "../types/types"
 
-
+const API = import.meta.env.VITE_API_URL;
+console.log(API)
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+    baseQuery: fetchBaseQuery({ baseUrl: API || 'http://localhost:5000/api' }),
     tagTypes: ["Products"],
     endpoints: (builder) => ({
         getAllproducts: builder.query<ProductsTypes[], void>({

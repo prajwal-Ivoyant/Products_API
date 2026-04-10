@@ -16,7 +16,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",  // your frontend
+    "https://your-frontend.vercel.app" // future
+  ],
+  credentials: true
+}));
 
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
