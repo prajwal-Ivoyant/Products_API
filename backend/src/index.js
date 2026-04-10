@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./src/config/database.js";
-import productRoutes from "./src/routes/product.routes.js"
+import connectDB from "./config/database.js";
+import productRoutes from "./routes/product.routes.js"
 import cors from "cors"
 
 // const swaggerUi = require("swagger-ui-express");
