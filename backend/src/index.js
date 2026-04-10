@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 import productRoutes from "./routes/product.routes.js"
 import cors from "cors"
+import errorHandler from "./middleware/error.middleware.js";
 
 // const swaggerUi = require("swagger-ui-express");
 // const swaggerSpec = require("./swagger");
@@ -18,10 +19,10 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "http://localhost:5173", 
-    "https://products-api-opal.vercel.app/"
+    "http://localhost:5173",
+    "https://products-api-opal.vercel.app"
   ],
-  credentials: true
+  // credentials: true
 }));
 
 
@@ -29,8 +30,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(express.json());
 app.use("/api/products", productRoutes);
-
-// app.use(errorHandler);
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
