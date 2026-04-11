@@ -6,7 +6,7 @@ console.log(API)
 
 export const productsApi = createApi({
     reducerPath: 'productsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://productsapi-production-0a2c.up.railway.app/api' }),
     tagTypes: ["Products"],
     endpoints: (builder) => ({
         getAllproducts: builder.query<ProductsTypes[], void>({

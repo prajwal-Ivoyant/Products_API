@@ -1,21 +1,21 @@
+
 import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
 import connectDB from "./config/database.js";
 import productRoutes from "./routes/product.routes.js"
 import cors from "cors"
 import errorHandler from "./middleware/error.middleware.js";
-
-// const swaggerUi = require("swagger-ui-express");
-// const swaggerSpec = require("./swagger");
-
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger.js";
 
-dotenv.config();
 
-connectDB();
+
+
 
 const app = express();
+
+await connectDB();
 
 app.use(cors({
   origin: [
