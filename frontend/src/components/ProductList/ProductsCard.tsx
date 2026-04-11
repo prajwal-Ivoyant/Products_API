@@ -4,7 +4,7 @@ import {
   useGetOneProductQuery,
 } from "../../api/productsSlice";
 import type { ProductsTypes } from "../../types/types";
-import { Card, Modal, message } from "antd";
+import { Card, Modal, message, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 type Props = {
@@ -45,7 +45,20 @@ function ProductsCard({ Product_id, onEdit }: Props) {
 
   const actions: React.ReactNode[] = [
     <EditOutlined key="edit" onClick={handleEdit} />,
-    <DeleteOutlined key="delete" onClick={handleDelete} />,
+    <Popconfirm
+      key="delete"
+      title="Delete Product"
+      description="Are you sure you want to delete this product?"
+      onConfirm={(e) => handleDelete(e as React.MouseEvent)}
+      onCancel={(e) => e?.stopPropagation()}
+      okText="Yes"
+      cancelText="No"
+    >
+      <DeleteOutlined
+        onClick={(e) => e.stopPropagation()} // prevent modal opening
+        style={{ color: "red" }}
+      />
+    </Popconfirm>,
   ];
 
   return (
@@ -75,7 +88,7 @@ function ProductsCard({ Product_id, onEdit }: Props) {
         open={open}
         onCancel={handleCloseModal}
         footer={[
-         
+
         ]}
       >
         <img
@@ -87,7 +100,7 @@ function ProductsCard({ Product_id, onEdit }: Props) {
         <p><b>Price:</b> ₹{Product.price}</p>
         <p><b>Category:</b> {Product.category}</p>
         <p><b>Description:</b> {Product.description}</p>
-        
+
       </Modal>
     </>
   );

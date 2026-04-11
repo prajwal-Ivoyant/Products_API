@@ -39,8 +39,8 @@ function InputModal({ isEdit, setIsEdit, open, setOpen, initialData }: Props) {
   }, [initialData, open, form]);
 
   const checkForChanges = () => {
-    if (!isEdit || !initialData) {
-      setHasChanges(true);
+    if (!isEdit || !initialData) {   //If NOT edit mode OR NO initial data exists
+      setHasChanges(true);  
       return;
     }
     const current = form.getFieldsValue();
