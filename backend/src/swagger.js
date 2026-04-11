@@ -1,8 +1,10 @@
-// const swaggerJsdoc = require("swagger-jsdoc");
 import swaggerJsdoc from "swagger-jsdoc";
 import { fileURLToPath } from "url";
 import path from "path";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// ✅ Resolve __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const options = {
   definition: {
@@ -14,11 +16,13 @@ const options = {
     },
     servers: [
       {
-        url: process.env.API_BASE_URL,
+        // ✅ Dynamic server URL — works in both local and deployed environments
+        url: process.env.API_BASE_URL || "http://localhost:5000/api/products",
       },
     ],
   },
-apis: [path.join(__dirname, "routes/*.js")],
+  // ✅ Absolute path so it resolves correctly regardless of where node is run from
+  apis: [path.join(__dirname, "routes/*.js")],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
